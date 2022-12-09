@@ -1,0 +1,84 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "My User Project CRUD",
+    "description": "My User Project Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Regostration",
+      "description": "Regostration"
+    }
+  ],
+  "paths": {
+    "/hotel/get-hotels": {
+      "get": {
+        "tags": ["Hotels"],
+        "summary": "Get all hotels in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Hotels"
+            }
+          }
+        }
+      }
+    },
+    "/hotel/create-hotel": {
+      "post": {
+        "tags": ["Hotels"],
+        "description": "Create new hotel in system",
+        "parameters": [
+          {
+            "name": "hotel",
+            "in": "body",
+            "description": "User that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New hotel is created",
+            "schema": {
+              "$ref": "#/definitions/Hotel"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Hotel": {
+      "required": ["title", "price", "picture"],
+      "properties": {
+        "price": {
+          "type": "integer"
+        },
+        "picture": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "Hotels": {
+      "type": "array",
+      "$ref": "#/definitions/Hotel"
+    }
+  },
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"]
+}
